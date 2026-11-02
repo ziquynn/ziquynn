@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fff4f9">
+<title>Bàn làm việc cá nhân · Vi Quỳnh</title>
+<style>
+:root{--bg:#fff4f9;--card:#fffaff;--ink:#3d3340;--muted:#998d9c;--line:#f0e7f0;--pink:#d67eb5;--green:#8aa999;--shadow:0 12px 34px #77577412}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 88% 20%,#f0def6 0,transparent 31%),var(--bg);color:var(--ink);font-family:"DM Sans",Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+button,input{font:inherit}
+button{cursor:pointer}
+.shell{max-width:1480px;margin:auto;padding:20px 28px 44px;display:grid;grid-template-columns:218px minmax(0,1fr);gap:34px}
+.sidebar{height:calc(100vh - 40px);min-height:600px;position:sticky;top:20px;border:1px solid white;background:rgba(255,250,255,.84);backdrop-filter:blur(18px);border-radius:24px;padding:23px 15px;display:flex;flex-direction:column}
+.brand{font-size:17px;font-weight:800;letter-spacing:-.7px;padding:0 11px 34px}.brand span{color:var(--pink)}
+.group-label{font-size:9px;font-weight:700;letter-spacing:1.4px;color:#aaa49a;padding:0 12px 9px}
+.nav{display:grid;gap:4px}.nav button{height:42px;border:0;border-radius:12px;background:transparent;text-align:left;padding:0 12px;display:flex;align-items:center;gap:12px;color:#78786f;font-size:12px;font-weight:500;transition:.18s}
+.nav button:hover{background:#f7f2ec;color:var(--ink)}.nav button.active{background:#f8eaf4;color:#503e50;font-weight:700}
+.icon{width:17px;text-align:center;font-size:15px;color:#a98f7a}
+.divider{height:1px;background:var(--line);margin:20px 8px}
+.side-bottom{margin-top:auto;border-radius:17px;background:#f7edf7;padding:14px;color:#82776c;font-size:10px;line-height:1.6}
+.side-bottom b{display:block;color:#4b463f;font-size:11px;margin-bottom:4px}
+.main{max-width:1120px;width:100%;margin:0 auto}
+.topbar{display:flex;justify-content:space-between;align-items:center;height:36px;color:var(--muted);font-size:11px}
+.topbar .right{display:flex;align-items:center;gap:17px}
+.topbar button{border:0;background:none;color:#77766e;font:inherit;cursor:pointer}
+.avatar{height:30px;width:30px;border-radius:50%;background:white!important;border:1px solid #eee3ef!important;font-weight:700!important;color:#62574e!important}
+.hero{display:flex;justify-content:space-between;align-items:flex-end;margin:21px 0 24px}
+.eyebrow{font-size:10px;letter-spacing:1.6px;color:#a19a90;font-weight:700;text-transform:uppercase;margin-bottom:9px}
+.hero h1{font-size:37px;font-weight:800;letter-spacing:-1.8px;margin:0 0 6px}
+.hero p{font-size:12px;color:#817e76;margin:0}
+.date-chip{background:#fffaff;border:1px solid white;border-radius:17px;padding:13px 17px;min-width:195px;box-shadow:var(--shadow)}
+.date-chip small{font-size:9px;color:#9d978c;display:block;margin-bottom:5px}
+.date-chip strong{font-size:13px;font-weight:700}
+.section{margin-top:31px}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.section-head h2{font-size:15px;font-weight:700;margin:0;letter-spacing:-.3px}
+.section-head span{color:#a39c92;font-size:10px}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.card{border:1px solid white;background:rgba(255,250,255,.91);border-radius:19px;box-shadow:var(--shadow)}
+.metric{padding:16px 17px 14px;min-height:164px}
+.metric-top{display:flex;justify-content:space-between;align-items:center}
+.metric-name{font-size:10px;color:#828078;font-weight:600;min-height:15px}
+.metric-icon{height:28px;width:28px;border-radius:10px;background:#f4eafa;display:grid;place-items:center;color:#aa8067;font-size:13px}
+.metric-value{font-size:29px;font-weight:700;letter-spacing:-1.1px;margin:14px 0 2px;min-height:36px}
+.metric-value small{font-size:11px;font-weight:500;letter-spacing:0;color:#8a877f}
+.target{font-size:9px;color:#a09a91;min-height:14px}
+.target b{color:#77766e;font-weight:600}
+.meter{height:4px;border-radius:9px;background:#f0ebe4;margin:12px 0 10px;overflow:hidden}
+.meter i{display:block;height:100%;border-radius:9px;background:var(--pink)}
+.metric-desc{font-size:9px;line-height:1.5;color:#8c8980;min-height:14px}
+.modules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.module{padding:16px 17px;min-height:175px}
+.module.core{grid-column:span 2;background:#fbf5fc}
+.module-heading{display:flex;justify-content:space-between;align-items:center}
+.module h3{font-size:13px;font-weight:700;margin:0;min-height:18px}
+.badge{font-size:9px;padding:5px 8px;border-radius:20px;background:#f7eaf3;color:#9e6590}
+.module p{font-size:10px;color:#918c83;margin:6px 0 14px;min-height:15px}
+.items{display:grid;gap:7px}
+.item{display:flex;align-items:center;gap:9px;font-size:10px;color:#605e58}
+.check{width:15px;height:15px;border:1px solid #ddd5ca;border-radius:5px;background:white;display:grid;place-items:center;color:var(--green);font-size:10px;flex:none}
+.module.core .items{grid-template-columns:repeat(3,1fr);margin-top:19px}
+.module.core .item{background:#fffaff;border:1px solid #f0e5f1;border-radius:11px;padding:10px 9px}
+.module.core .check{flex:0 0 15px}
+.module.core .item.priority{color:#8c527c;font-weight:700;border-color:#e8c8de}
+.quick-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.quick-card{display:flex;align-items:center;gap:13px;padding:14px 16px;min-height:68px;text-align:left;width:100%;color:inherit}
+.quick-icon{width:38px;height:38px;flex:0 0 auto;border-radius:13px;background:#f4eafa;display:grid;place-items:center;font-size:16px;color:#9d795f}
+.quick-copy strong{font-size:11px;font-weight:700;display:block;margin-bottom:4px;min-height:14px}
+.quick-copy span{font-size:9px;color:#918d84;line-height:1.4;display:block;min-height:13px}
+.inputbar{display:flex;align-items:center;gap:10px;padding:8px 9px 8px 15px;margin-top:29px;border:1px solid white;background:#fffaff;border-radius:17px;box-shadow:var(--shadow)}
+.prompt-icon{font-size:14px;color:#ae9c8b}
+.inputbar input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font-size:11px}
+.inputbar input::placeholder{color:#aaa49a}
+.actions{display:flex;gap:6px}
+.action{border:1px solid #eee3ef;background:#fffaff;border-radius:9px;padding:8px 11px;font-size:9px;font-weight:600;color:#716d65;white-space:nowrap}
+.action:hover{border-color:#e7b8d5;color:#8c567c}
+.action.primary,.action.selected{background:#d67eb5;color:white;border-color:#d67eb5}
+.action.primary:hover,.action.selected:hover{background:#c96ca7}
+.saved-list{display:grid;gap:7px;margin-top:10px}
+.saved-row{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:11px;background:#fffaff;font-size:11px}
+.saved-row small{color:#9e6590;white-space:nowrap}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,14px);opacity:0;transition:.2s;background:#383630;color:white;padding:10px 15px;border-radius:12px;font-size:11px;z-index:5;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.empty-module{min-height:175px}
+@media(max-width:900px){.shell{grid-template-columns:72px minmax(0,1fr);gap:19px;padding:14px}.sidebar{padding:17px 8px}.brand{font-size:0;text-align:center;padding:5px 0 25px}.brand::first-letter{font-size:19px}.group-label,.navtext,.side-bottom{display:none}.nav button{justify-content:center;padding:0}.icon{font-size:17px}.divider{margin:17px 5px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.modules{grid-template-columns:repeat(2,minmax(0,1fr))}.module.core{grid-column:span 2}}
+@media(max-width:560px){.shell{display:block;padding:12px}.sidebar{position:fixed;z-index:3;inset:auto 10px 10px;width:auto;height:61px;min-height:0;display:block;padding:7px 9px;border-radius:19px;box-shadow:0 8px 30px #40372b22}.brand,.group-label,.side-bottom,.divider{display:none}.nav{display:flex;justify-content:space-around}.nav button{height:45px;width:44px;flex-direction:column;justify-content:center;gap:2px}.main{padding-bottom:77px}.topbar{height:32px}.hero{display:block;margin:19px 0}.hero h1{font-size:30px}.date-chip{display:inline-block;margin-top:14px;padding:10px 13px}.metrics{gap:9px}.metric{padding:13px;min-height:157px}.metric-value{font-size:25px;margin-top:12px}.module{padding:14px;min-height:165px}.module.core{grid-column:span 2}.module.core .items{grid-template-columns:1fr;margin-top:12px}.module.core .item{padding:7px 8px}.quick-grid{grid-template-columns:1fr;gap:8px}.quick-card{padding:11px 13px}.quick-icon{width:34px;height:34px}.inputbar{flex-wrap:wrap;margin-top:22px}.inputbar input{min-width:calc(100% - 40px);height:28px}.actions{width:100%;justify-content:flex-end}.action{padding:8px 10px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+<div class="brand">VI QUỲNH<span>.</span></div>
+<div class="group-label">HỌC TẬP</div>
+<nav class="nav" aria-label="Điều hướng học tập">
+<button class="active" data-scroll="modules" title="Goals"><span class="icon">◎</span><span class="navtext">Goals</span></button>
+<button data-scroll="analytics" title="Study"><span class="icon">◴</span><span class="navtext">Study</span></button>
+</nav>
+<div class="divider"></div>
+<div class="group-label">CÁ NHÂN</div>
+<nav class="nav" aria-label="Điều hướng cá nhân">
+<button data-scroll="quick-entries" title="Expenses"><span class="icon">＄</span><span class="navtext">Expenses</span></button>
+<button data-scroll="finance" title="Earn lots of money"><span class="icon">＄</span><span class="navtext">Earn lots of money</span></button>
+<button data-scroll="today" title="What should I do today?"><span class="icon">◎</span><span class="navtext">What should I do today?</span></button>
+</nav>
+<div class="side-bottom"><b>Hôm nay, tiến thêm một bước.</b>Không gian học tập của Vi Quỳnh.</div>
+</aside>
+<main class="main" id="top">
+<header class="topbar"><span id="dateLabel">Thứ Hai, ngày 2 tháng 11</span><div class="right"><button id="searchBtn">⌕ &nbsp; Tìm kiếm</button><button id="noticeBtn">Thông báo</button><button class="avatar" aria-label="Hồ sơ Vi Quỳnh">V</button></div></header>
+<section class="hero"><div><div class="eyebrow">BÀN LÀM VIỆC CÁ NHÂN</div><h1 id="greeting">Hello, Vi Quỳnh.</h1><p>I study English and need to study it for two hours each day.</p></div><div class="date-chip"><small>TRỌNG TÂM HÔM NAY</small><strong>Go to school · Review · Get a 10</strong></div></section>
+<section class="section" id="analytics"><div class="section-head"><h2>Hôm nay của bạn</h2><span>Tiến độ theo mục tiêu</span></div><div class="metrics">
+<article class="card metric"><div class="metric-top"><span class="metric-name">Do homework before class</span><span class="metric-icon">◷</span></div><div class="metric-value">Go to school</div><div class="target"><b>Target: 9 or 10</b></div><div class="meter"><i style="width:0%"></i></div><div class="metric-desc">Review thoroughly beforehand.</div></article>
+<article class="card metric"><div class="metric-top"><span class="metric-name">Prepare for new lessons</span><span class="metric-icon">✓</span></div><div class="metric-value">Completed well today</div><div class="target"><b>Target: Prepare for the new lesson by reading ahead, studying the topic, and completing the new assignment in advance.</b></div><div class="meter"><i style="width:0%"></i></div><div class="metric-desc">Read ahead, explore the upcoming lesson, and complete the new exercises in advance.</div></article>
+<article class="card metric"><div class="metric-top"><span class="metric-name">Exercise for one hour</span><span class="metric-icon">♧</span></div><div class="metric-value">1,000 calories burned</div><div class="target"><b>Target: 890 calories</b></div><div class="meter"><i style="width:0%"></i></div><div class="metric-desc">Walk for 20 minutes, do 20 minutes of cardio, and complete 20 minutes of resistance training.</div></article>
+<article class="card metric"><div class="metric-top"><span class="metric-name">Healthy Eating</span><span class="metric-icon">♡</span></div><div class="metric-value">Good health</div><div class="target"><b>Target: Eat plenty of vegetables and protein, limit starches, avoid greasy snacks, and get to bed early for enough sleep.</b></div><div class="meter"><i style="width:0%"></i></div><div class="metric-desc">A healthy lifestyle helps me feel more relaxed and happier.</div></article>
+</div></section>
+<section class="section" id="modules"><div class="section-head"><h2>Mục tiêu và kế hoạch</h2><span>Tiến từng bước nhỏ</span></div><div class="modules">
+<article class="card module core"><div class="module-heading"><h3>School Activities</h3><span class="badge">ƯU TIÊN</span></div><p>Every day at school is a joy, and every lesson is a new skill.</p><div class="items"><div class="item"><span class="check"></span>Go to school</div><div class="item priority"><span class="check"></span>Get a 10</div><div class="item"><span class="check"></span>Prepare lessons in advance</div></div></article>
+<article class="card module empty-module"><div class="module-heading"><h3>Health and Well-being</h3><span class="badge"></span></div><p>Adequate sleep supports my well-being, and healthy living with daily exercise helps me stay strong and refreshed.</p><div class="items"><div class="item"><span class="check"></span>Go to bed before 10 p.m.</div><div class="item"><span class="check"></span>Exercise for one hour</div><div class="item"><span class="check"></span>Eat healthily</div></div></article>
+<article class="card module empty-module"><div class="module-heading"><h3>New Skills and Certifications</h3><span class="badge"></span></div><p>Improve myself and discover new hobbies.</p><div class="items"><div class="item"><span class="check"></span>Study for the IELTS exam</div><div class="item"><span class="check"></span>Practice drawing twice a week</div><div class="item"><span class="check"></span>Learn to cook delicious meals every day</div></div></article>
+</div></section>
+<section class="section" id="quick-entries"><div class="section-head"><h2>Ghi nhanh</h2><span></span></div><div class="quick-grid">
+<button class="card quick-card" type="button"><span class="quick-icon">✎</span><span class="quick-copy"><strong>Improve my skills</strong><span>I’m not afraid of any challenge; every task is small.</span></span></button>
+<button class="card quick-card" type="button"><span class="quick-icon">＋</span><span class="quick-copy"><strong>Goals</strong><span>Improve my English, communicate confidently in front of an audience, and gain plenty of experience.</span></span></button>
+<button class="card quick-card" type="button"><span class="quick-icon">◷</span><span class="quick-copy"><strong>Find a suitable job</strong><span>Look for work in marketing, teaching drawing, or tutoring.</span></span></button>
+</div></section>
+<section class="section" id="today"><div class="section-head"><h2></h2><span></span></div><div class="card empty-module"></div></section>
+<section class="section" id="finance"><div class="section-head"><h2></h2><span></span></div><div class="card empty-module"></div></section>
+<form class="inputbar" id="inputForm"><span class="prompt-icon">✦</span><input id="quickInput" placeholder="Viết một ghi chú hoặc việc cần làm…" autocomplete="off" aria-label="Nội dung ghi nhanh"><div class="actions"><button class="action" type="button" data-status="Completed">Completed</button><button class="action" type="button" data-status="Not completed">Not completed</button><button class="action primary" type="button" data-status="In progress">In progress</button></div></form>
+<div class="saved-list" id="savedList" aria-live="polite"></div>
+</main></div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const dateLabel=document.getElementById('dateLabel');
+dateLabel.textContent=new Intl.DateTimeFormat('vi-VN',{weekday:'long',day:'numeric',month:'long'}).format(new Date());
+const toast=document.getElementById('toast');let toastTimer;
+function notify(message){toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2200)}
+document.querySelectorAll('[data-scroll]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.nav button').forEach(item=>item.classList.remove('active'));button.classList.add('active');document.getElementById(button.dataset.scroll).scrollIntoView({behavior:'smooth'})}));
+document.getElementById('noticeBtn').addEventListener('click',()=>notify('Bạn hiện không có thông báo mới.'));
+document.getElementById('searchBtn').addEventListener('click',()=>{const query=prompt('Tìm nội dung trong bàn làm việc');if(query){const target=[...document.querySelectorAll('main section')].find(section=>section.innerText.toLocaleLowerCase('vi').includes(query.toLocaleLowerCase('vi')));if(target)target.scrollIntoView({behavior:'smooth'});else notify('Không tìm thấy nội dung phù hợp.')}});
+const input=document.getElementById('quickInput'),savedList=document.getElementById('savedList');
+function saveWithStatus(status){const value=input.value.trim();if(!value){input.focus();notify('Hãy nhập nội dung trước.');return}const row=document.createElement('div');row.className='saved-row';const text=document.createElement('span');text.textContent=value;const state=document.createElement('small');state.textContent=status;row.append(text,state);savedList.prepend(row);input.value='';notify('Đã lưu ghi chú.')}
+document.querySelectorAll('[data-status]').forEach(button=>button.addEventListener('click',()=>saveWithStatus(button.dataset.status)));
+document.getElementById('inputForm').addEventListener('submit',event=>{event.preventDefault();saveWithStatus('Đang hoàn thành')});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
